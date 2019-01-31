@@ -1,0 +1,17 @@
+Title: Kirby Starterkit
+
+----
+
+Author: Christopher Boutillé
+
+----
+
+Description: Userkit permet de développer rapidement un petit espace membre.
+
+----
+
+Keywords: Kirby, CMS, file-based
+
+----
+
+Copyright: © 2009-(date: Year) - (link: https://github.com/starckio/Userskit text: Userkit) by (link: http://www.starck.io text: starck.io).

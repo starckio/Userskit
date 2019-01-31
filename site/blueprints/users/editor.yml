@@ -1,0 +1,7 @@
+title: Editor
+permissions:
+  access:
+    panel: false
+    users: false
+    site: false
+  pages: false

@@ -1,0 +1,21 @@
+Title: Welcome
+
+----
+
+Text: 
+
+### Userkit permet de développer rapidement un petit espace membre.
+
+#### Les fonctions disponible:
+
+- Inscription + activation par email.
+- Connexion avec l'adresse email et le mot de passe.
+- Édition d'un compte (Prénom/Nom/Email/Mot de passe/etc…)
+- Réinitialisation du mot de passe par email.
+- Suppression définitive d'un compte.
+
+**Have fun with Kirby!**
+
+----
+
+Pagetitle: Bienvenue humain !
