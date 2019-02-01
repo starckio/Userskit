@@ -74,12 +74,14 @@ img {
 /* Links
 -------------------------------------------------- */
 a {
-	color: gray;
+	color: rgba(255, 255, 255, 0.5);
 	text-decoration: none;
 	transition: color .1s, background .1s, border .1s;
 }
-a:hover {
+a:hover,
+a.active {
 	color: white;
+  text-decoration: none;
 }
 
 
@@ -106,7 +108,7 @@ body {
 	line-height: 1.5em;
 	padding: 1.5em;
 	max-width: 50rem;
-	background: black;
+	background: darkslateblue;
 	color: white;
 }
 
@@ -171,12 +173,6 @@ body {
 -------------------------------------------------- */
 .menu a {
 	display: block;
-	color: gray;
-}
-.menu .active,
-.menu a:hover {
-	color: white;
-	text-decoration: none;
 }
 .menu li {
 	list-style: none;
@@ -186,7 +182,7 @@ body {
 }
 .menu > li > a {
 	padding: .35em 0;
-	border-top: 1px solid gray;
+	border-top: 1px solid rgba(255, 255, 255, 0.5);
 	font-weight: 500;
 }
 
@@ -213,17 +209,12 @@ h1 {
 	font-weight: 500;
 	margin-bottom: .5em;
 }
-@media screen and (min-width: 40em) {
-	h1.center {
-		text-align: center;
-	}
-}
 h2 {
 	font-size: 2em;
 	line-height: 1.25em;
 	font-weight: 400;
 	margin-bottom: .5em;
-	color: white;
+	color: rgba(255, 255, 255, 0.5);
 }
 h3 {
 	font-size: 1.4em;
@@ -236,7 +227,7 @@ h4 {
 	font-weight: 500;
 	line-height: 1.5em;
 	margin-bottom: .5em;
-	color: white;
+	color: rgba(255, 255, 255, 0.5);
 }
 h1 a, h2 a, h3 a, h4 a {
 	color: inherit;
@@ -261,17 +252,17 @@ h1 a, h2 a, h3 a, h4 a {
 .main ol {
 	margin-bottom: 1.5em;
 }
-.main a {
-	border-bottom: 2px solid gray;
-}
-.main a:hover {
-	border-color: white;
-}
 
 /* Text blocks */
 .text ul,
 .text ol {
 	margin-left: 1em;
+}
+
+@media screen and (min-width: 40em) {
+	.center {
+		text-align: center;
+	}
 }
 
 
@@ -301,7 +292,7 @@ form {
 }
 @media screen and (min-width: 40em) {
 	form {
-		max-width: 20em;
+		max-width: 25em;
 		margin: 0 auto;
 	}
 }
@@ -317,6 +308,10 @@ form label {
 	padding-bottom: .5rem;
 	font-weight: 600;
 	cursor: pointer;
+  vertical-align: middle;
+}
+form label small {
+  float: right;
 }
 form .field.error label {
 	color: #f40000;
@@ -326,7 +321,7 @@ form textarea,
 form select {
 	width: 100%;
   color: white;
-	border: 2px solid gray;
+	border: 2px solid rgba(255, 255, 255, 0.5);
 	padding: .5rem;
 	font-family: inherit;
 	font-size: inherit;
@@ -390,7 +385,7 @@ form .honeypot,
 	pointer-events: none;
 }
 
-form abbr {
+abbr {
 	color: #f40000;
 	font-weight: 400;
 	text-decoration: none;
@@ -398,10 +393,13 @@ form abbr {
 	outline: none;
 }
 form .help {
-	margin: .3rem 0 0;
-	color: gray;
+	padding: .3em;
+	margin: .5rem 0 0;
+	color: white;
 	text-align: center;
 	display: block;
+	background: rgba(0, 0, 0, 0.15);
+	border-radius: 3px;
 }
 form .help strong {
 	color: white;
@@ -409,13 +407,23 @@ form .help strong {
 }
 
 .submit {
-  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-column-gap: 1em;
   margin-bottom: 1.5em;
+  padding-bottom: 1.5em;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
 }
-.submit a {
-  vertical-align: middle;
-  margin-left: 1.5em;
-  display: inline-block;
+.submit .olink {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  grid-column-end: 4;
+  grid-column-start: 2;
+  text-align: right;
+}
+.submit .olink a {
+  
 }
 
 
@@ -459,9 +467,10 @@ form .help strong {
 	color: #fff;
 	text-align: center;
 	padding: .5em;
-	max-width: 23.5em;
-	margin: 0 auto;
+	max-width: 25em;
+	margin: 0 auto 1.5em;
 	background: #000;
+  border-radius: 2px;
 }
 .alert p {
 	margin: 0;
@@ -471,4 +480,13 @@ form .help strong {
 }
 .alert.error {
 	background: #e60000;
+}
+.alert a {
+  color: white;
+  border: 0;
+  font-weight: 700;
+  letter-spacing: .5px;
+}
+.alert a:hover {
+  border-bottom: 1px solid white;
 }
