@@ -2,14 +2,17 @@
 
 return function ($kirby) {
 
+  if($kirby->user()) go('/');
+
 	$error = null;
 
 	if($kirby->request()->is('POST') and get('register')) {
 
 		$data = [
-			'name'     => get('name'),
-			'email'    => get('email'),
-			'password' => get('password')
+			'name'             => get('name'),
+			'email'            => get('email'),
+			'password'         => get('password'),
+			'validatepassword' => get('validatepassword')
 		];
 
 		$rules = [
@@ -28,24 +31,29 @@ return function ($kirby) {
 
 			try {
 
-				$kirby->impersonate('kirby');
+			  if(v::same($data['password'], $data['validatepassword'])) {
 
-				$user = $kirby->users()->create([
-				  'name'     => $data['name'],
-				  'email'    => $data['email'],
-				  'password' => $data['password'],
-				  'language' => 'en',
-				  'role'     => 'editor'
-				]);
+				  $kirby->impersonate('kirby');
 
-        $user->logout();
+  				$user = $kirby->users()->create([
+  				  'name'     => $data['name'],
+  				  'email'    => $data['email'],
+  				  'password' => $data['password'],
+  				  'language' => 'en',
+  				  'role'     => 'editor'
+  				]);
 
-				$success = 'Welcome <strong>' . $user->name() . '</strong>.<br />Your account has been created !';
-				$data = array();
+          $user->logout();
+
+  				$success = 'Welcome <strong>' . $user->name() . '</strong>.<br />Your account has been created !';
+
+  			} else {
+  			  $failed = 'The password is not the same.';
+  			}
 
 			} catch(Exception $e) {
 
-				$failed = 'Your registration failed: ' . $e->getMessage();
+				$failed = 'Your registration failed:<br />' . $e->getMessage();
 
 			}
 		}

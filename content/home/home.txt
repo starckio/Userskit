@@ -4,15 +4,7 @@ Title: Welcome
 
 Text: 
 
-### Userkit permet de développer rapidement un petit espace membre.
-
-#### Les fonctions disponible:
-
-- Inscription + activation par email.
-- Connexion avec l'adresse email et le mot de passe.
-- Édition d'un compte (Prénom/Nom/Email/Mot de passe/etc…)
-- Réinitialisation du mot de passe par email.
-- Suppression définitive d'un compte.
+You can: (link: account text: edit your information), (link: account/password text: change your password), (link: logout text: to deconect you), or (link: account/delete text: delete your account).
 
 **Have fun with Kirby!**
 

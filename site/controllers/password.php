@@ -10,13 +10,14 @@ return function ($kirby) {
 	if($kirby->request()->is('POST') and get('update')) {
 
 		$data = [
-			'password' => esc(get('password')),
+			'password'         => get('password'),
+			'validatepassword' => get('validatepassword')
 		];
 		$rules = [
 			'password' => array('required', 'min' => 8),
 		];
 		$messages = [
-			'password' => 'Please enter a password.',
+			'password' => 'Password with at least 8 characters.',
 		];
 
 		if($invalid = invalid($data, $rules, $messages)) {
@@ -25,15 +26,21 @@ return function ($kirby) {
 
 			try {
 
-			  $user = $kirby->user()->update([
-			  	'password' => $user->changePassword($data['password']),
-			  ]);
+			  if(v::same($data['password'], $data['validatepassword'])) {
 
-				$success = 'Your passwords have been changed successfully.';
+  			  $user = $kirby->user()->update([
+  			  	'password' => $user->changePassword($data['password']),
+  			  ]);
+
+				  $success = 'Your passwords have been changed successfully.';
+
+  			} else {
+  			  $failed = 'The passwords are not identical.';
+  			}
 
 			} catch(Exception $e) {
 
-				$failed = 'There was a problem changing your password.' . $e->getMessage();
+				$failed = 'There was a problem changing your password.<br />' . $e->getMessage();
 
 			}
 		}

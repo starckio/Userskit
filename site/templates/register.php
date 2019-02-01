@@ -27,20 +27,25 @@
 	<form method="POST">
 
 		<div class="field">
-			<label for="name">Name</label>
-			<input type="text" id="name" name="name" value="<?= isset($data['name']) ? esc($data['name']) : '' ?>">
+			<label for="name">Full name</label>
+			<input type="text" id="name" name="name" value="<?= esc(get('name')) ?>">
 		</div>
 
 		<div class="field">
 			<label for="email">Email <abbr title="required">*</abbr></label>
-			<input type="email" id="email" name="email" value="<?= isset($data['email']) ? esc($data['email']) : '' ?>">
+			<input type="email" id="email" name="email" value="<?= esc(get('email')) ?>" required>
 		</div>
 
 		<div class="field">
 			<label for="password">Password <abbr title="required">*</abbr></label>
-			<input type="password" id="password" name="password" value="<?= isset($data['password']) ? esc($data['password']) : '' ?>">
+			<input type="password" id="password" name="password" required>
       <small class="help">Minimum 8 characters.</small>
 		</div>
+
+    <div class="field">
+    	<label for="validatepassword">Retype your password <abbr title="required">*</abbr></label>
+    	<input type="password" id="validatepassword" name="validatepassword" required>
+    </div>
 
 		<div class="field honeypot">
 			<label for="subject">Honeypot</label>
@@ -49,10 +54,11 @@
     
     <div class="submit">
       <button type="submit" name="register" value="register">Register</button>
-      <a href="<?= url('login') ?>">Login</a>
+      <div class="olink"><a href="<?= url('login') ?>">Login</a></div>
     </div>
 
 	</form>
+  <p class="center">Required fields <abbr title="required">*</abbr></p>
 
 	<?php endif ?>
 

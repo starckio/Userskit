@@ -8,10 +8,19 @@ return function($kirby) {
 
   if($kirby->request()->is('POST') and get('login')) {
 
-    if($user = $kirby->user(get('email')) and $user->login(get('password'))) {
-      go('/');
-    } else {
-      $error = '<strong>Email</strong> or <strong>password</strong> invalid.';
+    try {
+      if($username = get('username') and $password = get('password')) {
+        $user = $kirby->user($username);
+        if($user and $user->login($password)) {
+          // redirect to the homepage
+          // or any other page
+          go();
+        } else {
+          $error = 'No user is registered with this email address.';
+        }
+      }
+    } catch(Exception $e) {
+    	$error = 'Password invalid.<br /><a href="' . url('account/reset') . '">Reset your password ?</a>';
     }
 
   }

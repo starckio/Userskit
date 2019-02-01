@@ -32,15 +32,15 @@ return function ($kirby) {
 
 				$user = $kirby->user()->update([
 					'name'  => $user->changeName($data['name']),
-					'email' => $user->changeEmail($data['email']),
+					'email' => $user->changeEmail($data['email'])
 				]);
 
-				$success = 'Update success';
+				$success = 'Your informations has been successfully updated.';
 				$data = array();
 
 			} catch(Exception $e) {
 
-				$failed = 'Your registration failed: ' . $e->getMessage();
+				$failed = 'Your update failed:<br />' . $e->getMessage();
 
 			}
 		}

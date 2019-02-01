@@ -2,13 +2,14 @@
 
 <main class="main" role="main">
 
-  <h1 class="center"><?= $page->title() ?></h1>
-
 	<?php if(isset($success)): ?>
-	<div class="alert success">
-		<p><?= $success ?></p>
-	</div>
-	<?php else: ?>
+	<h1 class="center">🎉 Account deleted successfully 🎉</h1>
+  <div class="alert success">
+    <p><?= $success ?></p>
+  </div>
+  <?php else: ?>
+
+  <h1 class="center"><?= $page->title() ?></h1>
 
 	<?php if($error): ?>
 	<div class="alert error">
@@ -22,7 +23,7 @@
 
 		<div class="field">
 			<label for="password">Password <abbr title="required">*</abbr></label>
-			<input type="password" id="password" name="password">
+			<input type="password" id="password" name="password" required>
 		</div>
 
     <div class="field checkbox">
@@ -32,10 +33,11 @@
 
     <div class="submit">
       <button type="submit" name="delete" value="delete">Delete</button>
-      <a href="<?= url('account') ?>">Cancel</a>
+      <div class="olink"><a href="<?= url('account') ?>">Back to account</a></div>
     </div>
 
 	</form>
+	<p class="center">Required fields <abbr title="required">*</abbr></p>
 
   <?php endif ?>
 
