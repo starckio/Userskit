@@ -3,6 +3,18 @@
 return [
   'debug'  => true,
 
+  'email' => [
+    'transport' => [
+      'type' => 'smtp',
+      'host' => 'mail.smtp.com',
+      'port' => 465,
+      'security' => true,
+      'auth' => true,
+      'username' => 'contact@domain.ltd',
+      'password' => '---',
+    ]
+  ],
+
   'routes' => [
     [
       'pattern' => 'logout',
@@ -18,6 +30,7 @@ return [
     	'pattern' => 'token/([a-f0-9]{32})',
     	'action'  => function($token) {
     		$kirby   = kirby();
+    		$kirby->impersonate('kirby');
 
     		if ($user = $kirby->user()) {
     		  $user->logout();
@@ -25,20 +38,18 @@ return [
 
     		if ($user = $kirby->users()->findBy('token', $token)) {
 
-    			$kirby->impersonate('kirby');
-
     			$user->update([
     				'token'    => '',
-    				'password' => $token,
+    				'password' => $user->changePassword($token),
     			]);
 
     			if ($user->login($token)) {
-    				return go('/account/password');
+    				go('/account/password');
     			} else {
-    				return go('/');
+    				go('/');
     			} 
     		} else {
-    			return go('/');
+    			go('/');
     		}
     	}
     ],
