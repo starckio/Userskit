@@ -27,31 +27,27 @@ return [
       }
     ],
     [
-    	'pattern' => 'token/([a-f0-9]{32})',
-    	'action'  => function($token) {
-    		$kirby   = kirby();
-    		$kirby->impersonate('kirby');
-
-    		if ($user = $kirby->user()) {
-    		  $user->logout();
-    		}
-
-    		if ($user = $kirby->users()->findBy('token', $token)) {
-
-    			$user->update([
-    				'token'    => '',
-    				'password' => $user->changePassword($token),
-    			]);
-
-    			if ($user->login($token)) {
-    				go('/account/password');
-    			} else {
-    				go('/');
-    			} 
-    		} else {
-    			go('/');
-    		}
-    	}
+      'pattern' => 'token/([a-f0-9]{32})',
+      'action'  => function($token) {
+        $kirby   = kirby();
+        $kirby->impersonate('kirby');
+        if ($user = $kirby->user()) {
+          $user->logout();
+        }
+        if ($user = $kirby->users()->findBy('token', $token)) {
+          $user->update([
+            'token'    => '',
+            'password' => $user->changePassword($token),
+          ]);
+          if ($user->login($token)) {
+            go('/account/password');
+          } else {
+            go('error');
+          } 
+        } else {
+          go('error');
+        }
+      }
     ],
   ],
 ];
