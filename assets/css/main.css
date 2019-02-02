@@ -1,3 +1,28 @@
+/* Root
+-------------------------------------------------- */
+:root {
+	--color-one: #FFFFFF;
+	--color-two: #000000;
+  --color-one-opacity: rgba(255, 255, 255, 0.5);
+  --color-two-opacity: rgba(0, 0, 0, 0.5);
+  --color-two-opacity-two: rgba(0, 0, 0, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+    --color-one: #000000;
+    --color-two: #FFFFFF;
+    --color-one-opacity: rgba(0, 0, 0, 0.5);
+    --color-two-opacity: rgba(255, 255, 255, 0.5);
+    --color-two-opacity-two: rgba(255, 255, 255, 0.1);
+	}
+	
+	img {
+		filter: brightness(75%);
+	}
+}
+
+
 /* Interface - https://github.com/rsms/interface
 -------------------------------------------------- */
 @font-face {
@@ -74,13 +99,13 @@ img {
 /* Links
 -------------------------------------------------- */
 a {
-	color: rgba(255, 255, 255, 0.5);
+	color: var(--color-two-opacity);
 	text-decoration: none;
 	transition: color .1s, background .1s, border .1s;
 }
 a:hover,
 a.active {
-	color: white;
+	color: var(--color-two);
   text-decoration: none;
 }
 
@@ -108,11 +133,11 @@ body {
 	line-height: 1.5em;
 	padding: 1.5em;
 	max-width: 50rem;
-	background: darkslateblue;
-	color: white;
+	background: var(--color-one);
+	color: var(--color-two);
 }
 
-@media screen and (min-width: 40em) {
+@media screen and (min-width: 30em) {
 	body {
 		padding: 3em 1.5em 3em;
 	}
@@ -128,7 +153,7 @@ body {
 .logo,
 .logo a,
 .logo svg {
-  color: white;
+  color:var(--color-two);
   display: block;
   height: 54px;
   width: 46px;
@@ -162,7 +187,7 @@ body {
   outline: none;
 }
 
-@media screen and (min-width: 40em) {
+@media screen and (min-width: 30em) {
 	.logo {
 		float: left;
 	}
@@ -182,11 +207,11 @@ body {
 }
 .menu > li > a {
 	padding: .35em 0;
-	border-top: 1px solid rgba(255, 255, 255, 0.5);
+	border-top: 1px solid var(--color-two-opacity);
 	font-weight: 500;
 }
 
-@media screen and (min-width: 40em) {
+@media screen and (min-width: 30em) {
 	.menu {
 		float: right;
 		margin-right: -1em;
@@ -214,7 +239,7 @@ h2 {
 	line-height: 1.25em;
 	font-weight: 400;
 	margin-bottom: .5em;
-	color: rgba(255, 255, 255, 0.5);
+	color: var(--color-two-opacity);
 }
 h3 {
 	font-size: 1.4em;
@@ -227,7 +252,7 @@ h4 {
 	font-weight: 500;
 	line-height: 1.5em;
 	margin-bottom: .5em;
-	color: rgba(255, 255, 255, 0.5);
+	color: var(--color-two-opacity);
 }
 h1 a, h2 a, h3 a, h4 a {
 	color: inherit;
@@ -244,7 +269,7 @@ h1 a, h2 a, h3 a, h4 a {
 .main hr {
 	margin: 3em 0;
 	height: 2px;
-	background: gray;
+	background: var(--color-two-opacity);
 }
 .main p,
 .main figure,
@@ -259,7 +284,7 @@ h1 a, h2 a, h3 a, h4 a {
 	margin-left: 1em;
 }
 
-@media screen and (min-width: 40em) {
+@media screen and (min-width: 30em) {
 	.center {
 		text-align: center;
 	}
@@ -290,9 +315,9 @@ form {
 	font-size: 1rem;
 	padding-top: 1.5em;
 }
-@media screen and (min-width: 40em) {
+@media screen and (min-width: 30em) {
 	form {
-		max-width: 25em;
+		max-width: 30em;
 		margin: 0 auto;
 	}
 }
@@ -320,8 +345,8 @@ form input:not([type="button"]):not([type="submit"]):not([type="checkbox"]),
 form textarea,
 form select {
 	width: 100%;
-  color: white;
-	border: 2px solid rgba(255, 255, 255, 0.5);
+  color:var(--color-two);
+	border: 2px solid var(--color-two-opacity);
 	padding: .5rem;
 	font-family: inherit;
 	font-size: inherit;
@@ -339,15 +364,17 @@ form textarea {
 }
 form input[type="checkbox"] {
 	margin-right: 1em;
+  cursor: pointer !important;
 }
 .field input[type="checkbox"] + label {
 	display: inline-block;
 	padding: 0;
+  font-weight: 400;
 }
 form input:not([type="button"]):not([type="submit"]):not([type="checkbox"]):focus,
 form textarea:focus,
 form select:focus {
-	border-color: white;
+	border-color:var(--color-two);
 }
 form button,
 form input[type="button"],
@@ -359,8 +386,8 @@ form input[type="submit"] {
 	border: 0;
 	font-weight: 600;
 	cursor: pointer;
-	background: rgba(255, 255, 255, 0.7);
-	color: rgba(0, 0, 0, 0.8);
+	background: var(--color-two-opacity);
+	color: var(--color-one);
 	transition: color .1s ease-out, background-color .1s ease-out;
 	border-radius: 2px;
 }
@@ -373,8 +400,8 @@ form input[type="submit"]::-moz-focus-inner {
 form button:hover,
 form input[type="button"]:hover,
 form input[type="submit"]:hover {
-	background: white;
-	color: black
+	background:var(--color-two);
+	color:var(--color-one)
 }
 form .honeypot,
 .hidden {
@@ -393,83 +420,44 @@ abbr {
 	outline: none;
 }
 form .help {
-	padding: .3em;
 	margin: .5rem 0 0;
-	color: white;
-	text-align: center;
+	color:var(--color-two-opacity);
 	display: block;
-	background: rgba(0, 0, 0, 0.15);
-	border-radius: 3px;
 }
 form .help strong {
-	color: white;
+	color:var(--color-two);
   letter-spacing: .5px;
 }
 
 .submit {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(2,1fr);
   grid-column-gap: 1em;
-  margin-bottom: 1.5em;
-  padding-bottom: 1.5em;
-  border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
+  justify-items: start;
 }
-.submit .olink {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  grid-column-end: 4;
-  grid-column-start: 2;
+.submit p {
+  margin: 0 !important;
   text-align: right;
+  place-self: center end;
 }
-.submit .olink a {
-  
-}
-
-
-/* Buttons
--------------------------------------------------- */
-[class*='btn'], a[class*='btn'] {
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	-ms-appearance: none;
-	appearance: none;
-	background: transparent;
-	color: #000;
-	border: 2px solid #000;
-	border-radius: 5em;
-	cursor: pointer;
-	display: inline-block;
-	font-family: inherit;
-	font-size: .9em;
-	font-weight: 500;
-	line-height: 1.5em;
-	margin: 0;
-	outline: none;
-	padding: .3em 1em;
-	position: relative;
-}
-[class*='btn']::-moz-focus-inner {
-	background: #000;
-	color: #FFF;
-	padding: 0;
-}
-[class*='btn']:hover,
-[class*='btn']:focus {
-	background: #000;
-	color: #FFF;
+.otherlink {
+  max-width: 30em;
+  text-align: center;
+  margin: 1.5em auto 0;
+  padding-top: 1em;
+  border-top: 1px dotted var(--color-two-opacity);
 }
 
 
 /* Alerts
 -------------------------------------------------- */
 .alert {
-	color: #fff;
+	color:var(--color-one);
 	text-align: center;
 	padding: .5em;
-	max-width: 25em;
+	max-width: 30em;
 	margin: 0 auto 1.5em;
-	background: #000;
+	background:var(--color-two);
   border-radius: 2px;
 }
 .alert p {
@@ -481,12 +469,16 @@ form .help strong {
 .alert.error {
 	background: #e60000;
 }
+.alert.info {
+  background: #D3CDBF;
+  color: #4D373A;
+}
 .alert a {
-  color: white;
+  color:var(--color-one);
   border: 0;
   font-weight: 700;
   letter-spacing: .5px;
 }
 .alert a:hover {
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid var(--color-one);
 }
