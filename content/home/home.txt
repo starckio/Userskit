@@ -4,7 +4,11 @@ Title: Welcome
 
 Text: 
 
-You can: (link: account text: edit your information), (link: account/password text: change your password), (link: logout text: to deconect you), or (link: account/delete text: delete your account).
+### You can:
++ (link: account text: edit your information),
++ (link: account/password text: change your password),
++ (link: logout text: to deconect you),
++ or (link: account/delete text: delete your account).
 
 **Have fun with Kirby!**
 
