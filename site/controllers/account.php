@@ -2,16 +2,15 @@
 
 return function ($kirby) {
 
-  $user = $kirby->user();
-  if(!$user) go('login');
+  if(!$kirby->user()) go('login');
 
 	$error = null;
 
 	if($kirby->request()->is('POST') and get('update')) {
 
 		$data = [
-			'name'  => esc(get('name')),
-			'email' => esc(get('email'))
+			'name'  => get('name'),
+			'email' => get('email'),
 		];
 
 		$rules = [
@@ -21,7 +20,7 @@ return function ($kirby) {
 
 		$messages = [
 			'name'  => 'Please, enter a valid name.',
-			'email' => 'The email address is invalid.',
+			'email' => 'Please, enter a valid email address.',
 		];
 
 		if($invalid = invalid($data, $rules, $messages)) {
@@ -30,9 +29,9 @@ return function ($kirby) {
 
 			try {
 
-				$user = $kirby->user()->update([
-					'name'  => $user->changeName($data['name']),
-					'email' => $user->changeEmail($data['email'])
+				$kirby->user()->update([
+					'name'  => $kirby->user()->changeName($data['name']),
+					'email' => $kirby->user()->changeEmail($data['email']),
 				]);
 
 				$success = 'Your informations has been successfully updated.';
@@ -40,11 +39,13 @@ return function ($kirby) {
 
 			} catch(Exception $e) {
 
-				$failed = 'Your update failed:<br />' . $e->getMessage();
+				$failed = $e->getMessage();
 
 			}
+
 		}
+
 	}
 
-	return compact('error', 'success', 'failed', 'user', 'data');
+	return compact('error', 'data', 'success', 'failed');
 };

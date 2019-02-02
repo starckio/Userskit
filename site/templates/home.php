@@ -1,10 +1,10 @@
-<?php if(!$kirby->user()) go('login') ?>
+<?php if(!$kirby->user()) go('account') ?>
 <?php snippet('header') ?>
 
 <main class="main" role="main">
 
 	<div class="text">
-		<h1><?= $page->title() ?><?php if($user = $kirby->user()): ?> <?= $user->name() ?><?php endif ?></h1>
+		<h1><?= $page->title() ?> <?= $kirby->user()->name() ?></h1>
     <?= $page->text()->kt() ?>
 	</div>
 

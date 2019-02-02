@@ -2,41 +2,37 @@
 
 return function ($kirby) {
 
-  $user = $kirby->user();
-  if(!$user) go('login');
+  if(!$kirby->user()) go('login');
 
 	$error = null;
 
 	if($kirby->request()->is('POST') and get('delete')) {
 
-		$data = [
-			'password' => esc(get('password')),
-		];
-		$rules = [
-			'password' => array('required', 'min' => 8),
-		];
-		$messages = [
-			'password' => 'Please enter your password.',
-		];
+		try {
 
-		if($invalid = invalid($data, $rules, $messages)) {
-			$error = $invalid;
-		} else {
+	    $password = esc(get('password'));
+	    $validate = esc(get('validate'));
 
-			try {
+	    if(v::same($password, $validate)) {
 
-				$kirby->user($user->email())->delete();
+			  $kirby->user($kirby->user()->email())->delete();
 
-				$user->logout();
+			  $kirby->user()->logout();
 
-				$success = 'The user has been deleted';
+		    $success = 'Your account has been successfully deleted.';
 
-			} catch(Exception $e) {
+		  } else { // v::same
 
-				$error = 'The user could not be deleted';
+		    $error = 'Please note, passwords must be identical!';
 
-			}
+		  }
+
+		} catch(Exception $e) {
+
+			$error = $e->getMessage();
+
 		}
+
 	}
 
 	return compact('error', 'success');

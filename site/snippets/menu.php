@@ -15,9 +15,9 @@
 
 		<?php else: ?>
 
-		<li><a<?php e($pages->find('login')->isOpen(), ' class="active"') ?>  href="<?= url('login') ?>">Login</a></li>
-		<li><a<?php e($pages->find('account/register')->isOpen(), ' class="active"') ?>  href="<?= url('account/register') ?>">Register</a></li>
-    <li><a<?php e($pages->find('account/mailregister')->isOpen(), ' class="active"') ?>  href="<?= url('account/mailregister') ?>">Register by email</a></li>
+		<li><a<?php e($pages->find('login')->isOpen(), ' class="active"') ?>  href="<?= url('login') ?>">Sign in</a></li>
+		<li><a<?php e($pages->find('account/signup')->isOpen(), ' class="active"') ?>  href="<?= url('account/signup') ?>">Sign up</a></li>
+    <li><a<?php e($pages->find('account/registrationbyemail')->isOpen(), ' class="active"') ?>  href="<?= url('account/registrationbyemail') ?>">Activate by email</a></li>
 
 		<?php endif ?>
 	</ul>
